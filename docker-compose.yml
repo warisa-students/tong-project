@@ -16,7 +16,7 @@ services:
       - ${POSTGRES_PORT}:${POSTGRES_PORT}
     volumes:
       - ./_entrypoint:/docker-entrypoint-initdb.d
-      - db_data:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql
     networks:
       - feedback_network
   redis:
