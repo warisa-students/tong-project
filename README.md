@@ -1,7 +1,5 @@
-# Welcome
+# Setup
 
-This is a test
+`docker compose up -d`
+`docker compose down v`
 
-## Objective
-- Smart System
-- AI
