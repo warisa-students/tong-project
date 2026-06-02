@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from .database import get_db
 
 app = FastAPI()
 
@@ -6,6 +7,13 @@ app = FastAPI()
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
+
+
+@app.get("/dbtest")
+def db_test():
+    db = get_db()
+
+    return {"message": "Database connection successful"}
 
 
 @app.get("/items/{item_id}")
