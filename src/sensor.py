@@ -19,7 +19,7 @@ async def continuous_monitor():
                 db.commit()
             finally:
                 db.close()
-            await asyncio.sleep(1)
+            await asyncio.sleep(3)
     except asyncio.CancelledError:
         print("Background task was cleanly cancelled.")
 
