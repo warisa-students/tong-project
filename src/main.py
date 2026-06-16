@@ -1,24 +1,11 @@
 from fastapi import Depends, FastAPI
-from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from .database import get_db
 from .model import SensorData
+from .route import ItemCreate, ItemResponse
+from .route import lifespan
 
-app = FastAPI()
-
-
-class ItemCreate(BaseModel):
-    name: str
-    value: float
-
-
-class ItemResponse(BaseModel):
-    id: int
-    name: str
-    value: float
-
-    class Config:
-        from_attributes = True
+app = FastAPI(lifespan=lifespan)
 
 
 @app.get("/")
