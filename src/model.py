@@ -8,4 +8,4 @@ class SensorData(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
-    value = Column(Float, unique=True, index=True)
+    value = Column(Float, unique=False, index=True)
