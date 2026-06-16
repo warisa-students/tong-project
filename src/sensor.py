@@ -1,18 +1,25 @@
 import asyncio
 from contextlib import asynccontextmanager
-
+from .database import SessionLocal
 from fastapi import FastAPI
+from .model import SensorData
+import random
 
 
 async def continuous_monitor():
     """A background process that runs forever while the app is alive."""
     try:
         while True:
-            print("Fetching telemetry data...")
-            # Your continuous background logic here (e.g., database polling)
-
-            # CRITICAL: Always use non-blocking asyncio.sleep
-            await asyncio.sleep(5)
+            print("Sensor Data Incoming...")
+            db = SessionLocal()
+            try:
+                random_value = random.uniform(20.0, 30.0)
+                data = SensorData(name="Temperature", value=random_value)
+                db.add(data)
+                db.commit()
+            finally:
+                db.close()
+            await asyncio.sleep(1)
     except asyncio.CancelledError:
         print("Background task was cleanly cancelled.")
 

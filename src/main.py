@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from .database import get_db
 from .model import SensorData
 from .route import ItemCreate, ItemResponse
-from .route import lifespan
+from .sensor import lifespan
 
 app = FastAPI(lifespan=lifespan)
 
